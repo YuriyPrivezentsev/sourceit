@@ -14,7 +14,7 @@ public class Hanoi {
 
     public void setUp(){
         towers = new ArrayList<>();
-        LinkedList<Integer> tower = new LinkedList<>();
+        Deque<Integer> tower = new LinkedList<>();
         for (int i = 7; i > 0; i--) {
             tower.push(i);
         }
