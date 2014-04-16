@@ -1,20 +1,28 @@
 package ua.com.sourceit.multithreading;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by yuriy on 13.04.14.
  */
 public class SynchronizedCounterTest {
+    private static final String MESSAGE_STUB = "%s counter value %d";
     private Integer counter = 0;
+    private List<String> messages = new LinkedList<>();
 
     public int increment(){
-        synchronized (counter){
+        //We cannot synchronize on counter here, since increment changes the counter object and thus our synch section becomes unsynchronized
+        synchronized (MESSAGE_STUB){
             counter++;
+            messages.add(String.format(MESSAGE_STUB,Thread.currentThread().getName(), counter));
+            System.out.println(String.format(MESSAGE_STUB,Thread.currentThread().getName(), counter));
             return counter;
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-        final int numberOfTestSteps = 15;
+        final int numberOfTestSteps = 30;
         final SynchronizedCounterTest synchronizedCounter = new SynchronizedCounterTest();
 
         class CountingThread extends Thread{
@@ -27,7 +35,6 @@ public class SynchronizedCounterTest {
                 int count;
                 do{
                     count = synchronizedCounter.increment();
-                    System.out.format("%s counter value %d\n", Thread.currentThread().getName(), count);
                 } while (count < numberOfTestSteps);
             }
         }
@@ -41,5 +48,13 @@ public class SynchronizedCounterTest {
         countingThread1.join();
         countingThread2.join();
 
+//        synchronizedCounter.printMessages();
+
+    }
+
+    public void printMessages(){
+        for (String message : messages) {
+            System.out.println(message);
+        }
     }
 }
