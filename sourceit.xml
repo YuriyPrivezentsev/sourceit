@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sourceit" default="Build">
+
+
+  <property file="sourceit.properties"/>
+
+    <target name="Build" depends="Clean">
+        <antcall target="Compile"/>
+        <antcall target="Jar"/>
+        <!--<antcall target="CopySettings"/>-->
+    </target>
+
+    <target name="Compile">
+        <mkdir dir="${Folder.classes}"/>
+        <javac srcdir="${Folder.src}" destdir="${Folder.classes}"/>
+    </target>
+
+    <target name="Jar">
+        <mkdir dir="${Folder.release}"/>
+        <jar basedir="${Folder.classes}" jarfile="${File.release}">
+            <manifest>
+                <attribute name="Title" value="SourceIT"/>
+                <attribute name="Vendor" value="Yuriy Privezentsev."/>
+                <attribute name="Build" value="1"/>
+                <attribute name="Main-Class" value="package ua.com.sourceit.power.PowerOfTwo"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="CopySettings">
+        <copy file="${File.settings}" todir="${Folder.release}"/>
+        <!--<copyfile src="${File.settings}" dest="${Folder.release}\${File.settings}"/>-->
+    </target>
+
+    <target name="Clean">
+        <delete dir="${Folder.classes}"/>
+        <delete dir="${Folder.release}"/>
+    </target>
+</project>
