@@ -22,7 +22,7 @@ public class SynchronizedCounterTest {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        final int numberOfTestSteps = 30;
+        final int numberOfTestSteps = 10;
         final SynchronizedCounterTest synchronizedCounter = new SynchronizedCounterTest();
 
         class CountingThread extends Thread{

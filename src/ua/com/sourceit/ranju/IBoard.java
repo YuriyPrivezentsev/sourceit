@@ -22,4 +22,33 @@ public interface IBoard {
 
     public Figure getCellValue(int x, int y);
 
+    /**
+     * Desk cell class.
+     */
+    public static final class IPoint {
+        private final int x;
+        private final int y;
+
+        /**
+         * Default constructor
+         * @param x - x coordinate
+         * @param y - y coordinate
+         */
+        public IPoint(int x, int y) {
+            if(x < 0 || x > BOARD_SIZE ||
+                    y < 0 || y > BOARD_SIZE){
+                throw new IllegalArgumentException(String.format("Illegal point coordinates (%i, %i)",x,y));
+            }
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+    }
 }

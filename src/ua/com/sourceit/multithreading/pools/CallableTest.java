@@ -17,14 +17,14 @@ public class CallableTest {
 
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(3);
 
-        ScheduledFuture<Integer> scheduled = scheduledExecutorService.schedule(callable, 10, TimeUnit.SECONDS);
+        ScheduledFuture<Integer> scheduled = scheduledExecutorService.schedule(callable, 15, TimeUnit.SECONDS);
 
         System.out.println("We can take a rest here");
 
         Integer integer = scheduled.get();
         System.out.println("integer = " + integer);
 
-        scheduledExecutorService.shutdown();
+//        scheduledExecutorService.shutdown();
         System.out.println("Everything is done");
     }
 }

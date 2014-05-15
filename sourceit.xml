@@ -12,7 +12,12 @@
 
     <target name="Compile">
         <mkdir dir="${Folder.classes}"/>
-        <javac srcdir="${Folder.src}" destdir="${Folder.classes}"/>
+        <javac srcdir="${Folder.src}" destdir="${Folder.classes}">
+            <classpath>
+                <pathelement location="/home/yuriy/.m2/repository/junit/junit/4.10/junit-4.10.jar"/>
+                <pathelement location="/home/yuriy/.m2/repository/org/apache/commons/commons-lang3/3.0/commons-lang3-3.0.jar"/>
+            </classpath>
+        </javac>
     </target>
 
     <target name="Jar">
@@ -22,7 +27,7 @@
                 <attribute name="Title" value="SourceIT"/>
                 <attribute name="Vendor" value="Yuriy Privezentsev."/>
                 <attribute name="Build" value="1"/>
-                <attribute name="Main-Class" value="package ua.com.sourceit.power.PowerOfTwo"/>
+                <attribute name="Main-Class" value="ua.com.sourceit.power.PowerOfTwo"/>
             </manifest>
         </jar>
     </target>
@@ -35,5 +40,24 @@
     <target name="Clean">
         <delete dir="${Folder.classes}"/>
         <delete dir="${Folder.release}"/>
+        <delete dir="${Folder.reports}"/>
+    </target>
+
+    <target name="Test" depends="Clean,Compile">
+        <mkdir dir="${Folder.reports}"/>
+        <junit >
+            <classpath>
+                <pathelement location="${Folder.classes}"/>
+                <pathelement location="/home/yuriy/.m2/repository/junit/junit/4.10/junit-4.10.jar"/>
+                <pathelement location="/home/yuriy/.m2/repository/org/apache/commons/commons-lang3/3.0/commons-lang3-3.0.jar"/>
+            </classpath>
+            <test name="ua.com.sourceit.junit4.StringUtilsJUnit4ParameterizedTest" haltonfailure="no" todir="${Folder.reports}">
+                <formatter type="xml"/>
+            </test>
+        </junit>
+        <junitreport todir="${Folder.reports}">
+            <fileset dir="${Folder.reports}"/>
+            <report todir="${Folder.reports}/html"/>
+        </junitreport>
     </target>
 </project>
