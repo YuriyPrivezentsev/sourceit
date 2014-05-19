@@ -20,12 +20,27 @@ public interface IBoard {
      */
     public static final int BOARD_SIZE = 20;
 
+    /**
+     * Get the figure on the specified cell
+     * @param x - x cell coordinate
+     * @param y - y cell coordinate
+     * @return - figure residing in the cell
+     * @deprecated use <code>getCellValue(Point point)</code> instead
+     */
+    @Deprecated
     public Figure getCellValue(int x, int y);
+
+    /**
+     * Get the figure on the specified cell
+     * @param point - coordinate of the cell
+     * @return - figure residing in the cell
+     */
+    public Figure getCellValue(Point point);
 
     /**
      * Desk cell class.
      */
-    public static final class IPoint {
+    public static final class Point {
         private final int x;
         private final int y;
 
@@ -34,7 +49,7 @@ public interface IBoard {
          * @param x - x coordinate
          * @param y - y coordinate
          */
-        public IPoint(int x, int y) {
+        public Point(int x, int y) {
             if(x < 0 || x > BOARD_SIZE ||
                     y < 0 || y > BOARD_SIZE){
                 throw new IllegalArgumentException(String.format("Illegal point coordinates (%i, %i)",x,y));

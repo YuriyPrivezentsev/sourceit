@@ -20,5 +20,5 @@ public interface IPlayer {
      * Initiate player's move
      * @return point on board where player sets his mark
      */
-    public IBoard.IPoint takeTurn();
+    public IBoard.Point takeTurn();
 }
