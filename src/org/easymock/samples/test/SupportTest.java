@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.easymock.samples;
+package org.easymock.samples.test;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
 import org.easymock.EasyMockSupport;
 import org.easymock.IMocksControl;
+import org.easymock.samples.src.ClassTested;
+import org.easymock.samples.src.Collaborator;
 import org.junit.Before;
 import org.junit.Test;
 

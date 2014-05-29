@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.easymock.samples;
+package org.easymock.samples.test;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;

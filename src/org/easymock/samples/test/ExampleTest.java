@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.easymock.samples;
+package org.easymock.samples.test;
 
 /**
  * @author OFFIS, Tammo Freese
@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.easymock.IAnswer;
+import org.easymock.samples.src.ClassTested;
+import org.easymock.samples.src.Collaborator;
 import org.junit.Before;
 import org.junit.Test;
 
