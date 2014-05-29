@@ -43,12 +43,18 @@ public class ExampleTest {
         classUnderTest.setListener(mock);
     }
 
+    /**
+     * Тестирование факта отсутствия вызова
+     */
     @Test
     public void removeNonExistingDocument() {
         replay(mock);
         classUnderTest.removeDocument("Does not exist");
     }
 
+    /**
+     * Тест вызова метода
+     */
     @Test
     public void addDocument() {
         mock.documentAdded("New Document");
@@ -57,6 +63,12 @@ public class ExampleTest {
         verify(mock);
     }
 
+    /**
+     * Тест кратного вызова метода.
+     *      - нет возможности установить минимальный порог
+     *      - можно установить безлимит anyTimes(), но в таком случае надо убедиться,
+     *      что потом нет ещё вызовов этого метода
+     */
     @Test
     public void addAndChangeDocument() {
         mock.documentAdded("Document");
@@ -70,6 +82,13 @@ public class ExampleTest {
         verify(mock);
     }
 
+    /**
+     * Тест ожидаемого возвращаемого значения.
+     *
+     * Тип возвращемого значения определяется на этапе компиляции. Например, следующий код не скомпилируется,
+     * т.к. тип возвращаемого значения указан неверно:
+     *      expect(mock.voteForRemoval("Document")).andReturn("wrong type");
+     */
     @Test
     public void voteForRemoval() {
         // expect document addition
